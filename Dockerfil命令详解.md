@@ -13,3 +13,6 @@
 - USER              指定当前的用户
 - HEALTHCHECK       检测容器是否正常运行,1.12版本之前容器中出现错误的时候会报错但是仍然在接受用户请求, 这个命令就是检测容器的状态,正常为`healthy` 出错时`unhealthy`, 存在三个参数:检测周期(默认30s),执行超时(默认30s),连续失败次数(默认3次)
 - ONBUILD           当这个 `Dockerfile` 被其他的 `Dockerfile`中`FROM`继承的时候运行,本身自己构建的时候不会自行 `ONBUILD RUN ["echo", "$HOME"]` 比如这一条就是被继承的时候才会执行
+
+
+> 在执行的时候,通常是 `docker build .` 这里的 `.`并不是指构建`Dockerfile`的文件位置,而是指的上下文(Context)的路径,是告诉 docker 服务器需要从哪取拿些`COPY,ADD`等等的源文件路径, 执行的时候默认是上下文目录下名为`Dockerfile`文件,指定要执行的`Dockerfile`文件的是 `docker build -f /path/to/Dockerfile  /path/to/Context` 这样的 
