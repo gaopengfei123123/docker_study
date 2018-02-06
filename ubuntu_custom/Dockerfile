@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER gaofeifiy/5173180@qq.com
+LABEL AUTHOR "gaofeifiy/5173180@qq.com" 
 RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
 RUN rm /etc/apt/sources.list
 ADD sources.list /etc/apt/sources.list
