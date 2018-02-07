@@ -16,3 +16,5 @@
 
 
 > 在执行的时候,通常是 `docker build .` 这里的 `.`并不是指构建`Dockerfile`的文件位置,而是指的上下文(Context)的路径,是告诉 docker 服务器需要从哪取拿些`COPY,ADD`等等的源文件路径, 执行的时候默认是上下文目录下名为`Dockerfile`文件,指定要执行的`Dockerfile`文件的是 `docker build -f /path/to/Dockerfile  /path/to/Context` 这样的 
+
+Dockerfile 的多阶段构建,详细示例看同目录下的`go_docker/Dockerfile`
