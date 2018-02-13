@@ -80,3 +80,5 @@ screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux
 可以查看卷的列表, [参考资料1](https://forums.docker.com/t/host-path-of-volume/12277/6) [参考资料2](https://stackoverflow.com/questions/39175194/docker-compose-persistent-data-mysql)
 
 清除本地的卷可以执行`docker volume prune`
+
+[官方文档](https://docs.docker.com/compose/compose-file/#volumes)
