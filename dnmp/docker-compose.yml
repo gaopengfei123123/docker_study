@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+
+
+    nginx:
+      build: 
+        context: ./nginx
+        # args:
+        #   - PHP_UPSTRAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
+      ports:
+        - "8080:80"
+        - "4433:443"
+      tty: true
+      depends_on:
+        - php-fpm
+      networks: 
+        - frontend
+        - backend
+
+
+    php-fpm:
+      build:
+        context: ./php-fpm
+      volumes:
+        - ./php-fpm/php71.ini:/user/local/etc/php/php.ini
+      expose:
+        - "9000"
+      networks: 
+        - backend
+
+
+
+networks:
+  frontend:
+    driver: "bridge"
+  backend:
+    driver: "bridge"
+
+
+# volumes:
+#   mysql:
