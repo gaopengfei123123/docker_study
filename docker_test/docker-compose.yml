@@ -9,11 +9,34 @@ services:
         # args:
         #   - PHP_UPSTRAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
       ports:
-        - "8080:80"
+        - "80:80"
         - "4433:443"
       volumes:
         - ./www:/usr/share/nginx/html
+        - ./nginx/site:/etc/nginx/conf.d/
       tty: true
       dns:
           - 8.8.8.8
           - 114.114.114.114
+      depends_on:
+        - php-fpm
+      networks:
+        - backend
+      links:
+        - php-fpm:php-fpm
+
+    php-fpm:
+        build:
+          context: ./php-fpm
+        volumes:
+          - ./php-fpm/php71.ini:/user/local/etc/php/php.ini
+        expose:
+          - "9000"
+        networks: 
+          - backend
+
+networks:
+  # frontend:
+  #   driver: "bridge"
+  backend:
+    driver: "bridge"

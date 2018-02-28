@@ -15,7 +15,6 @@ services:
       depends_on:
         - php-fpm
       networks: 
-        - frontend
         - backend
 
 
@@ -32,8 +31,8 @@ services:
 
 
 networks:
-  frontend:
-    driver: "bridge"
+  # frontend:
+  #   driver: "bridge"
   backend:
     driver: "bridge"
 
