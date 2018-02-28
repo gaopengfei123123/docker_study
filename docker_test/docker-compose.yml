@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+
+
+    nginx:
+      build: 
+        context: ./nginx
+        # args:
+        #   - PHP_UPSTRAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
+      ports:
+        - "8080:80"
+        - "4433:443"
+      volumes:
+        - ./www:/usr/share/nginx/html
+      tty: true
+      dns:
+          - 8.8.8.8
+          - 114.114.114.114
