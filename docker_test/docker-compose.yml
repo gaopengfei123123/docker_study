@@ -2,6 +2,11 @@ version: '2'
 
 services:
 
+    workspace:
+      image: tianon/true
+      volumes:
+         - ./www:/usr/share/nginx/html
+
 
     nginx:
       build: 
@@ -11,9 +16,13 @@ services:
       ports:
         - "80:80"
         - "4433:443"
+      volumes_from:
+          - applications
       volumes:
-        - ./www:/usr/share/nginx/html
+        # - ./www:/usr/share/nginx/html
         - ./nginx/site:/etc/nginx/conf.d/
+      volumes_from:
+        - workspace
       tty: true
       dns:
           - 8.8.8.8
@@ -25,12 +34,15 @@ services:
 #FIREBUG  问题:了之前服务启动后只能访问静态文件,访问php 文件时服务提示file not found
 #         原因:静态文件是放在 nginx 容器当中的,nginx 自然能访问到,而出现 php 文件的时候会通过 fastcgi 转发到 php-fpm 容器当中,php-fpm 容器没有对应的动态文件,自然是找不到
 #         解决:nginx 和 php-fpm 两个容器共享同一个文件目录,在目录当中再做区分动静态文件,也就是说两个容器都来挂载相同的目录
+#         优化: 使用 volumes_from 来共享挂载目录,减少频繁修改的问题
     php-fpm:
         build:
           context: ./php-fpm
         volumes:
           - ./php-fpm/php71.ini:/user/local/etc/php/php.ini
-          - ./www:/usr/share/nginx/html
+          # - ./www:/usr/share/nginx/html
+        volumes_from:
+          - workspace
         expose:
           - "9000"
         networks: 
