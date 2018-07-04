@@ -1,0 +1,3 @@
+[submodule "dnmp"]
+	path = dnmp
+	url = git@github.com:gaopengfei123123/dnmp.git
