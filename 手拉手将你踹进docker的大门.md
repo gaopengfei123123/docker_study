@@ -53,3 +53,20 @@ docker stop 6732fa239270 或 local_nginx
 ```
 
 ### 什么是容器？什么是镜像？
+![image-container](./images/image-container.jpg)
+
+之前我们使用 `VirtualBox` 装虚拟机的时候有装盘镜像, 但是启动后就是一个个的虚拟机了, 不过在 docker 中和虚拟机还是有点区别
+就拿上图来说, `container`就是镜像的实例化, `image` 是容器的底层支撑, 其实他们的关系用代码中的类`Class`
+来比喻是最合适的:
+
+* Class 就是我们实际开发中写的一个代码集合, Object 是 Class 实例化之后生成的一种资源变量
+* Image 也是预先写好的逻辑, 并存在一个地方, Container 是 Image 启动之后生成的一个虚拟系统
+* 实例化出来的 Object 不会影响到 Class 中的内容
+* 已经启动的 Container 也不会影响到 Image 中的逻辑
+* Class 可以继承别的 Class, 从而继承它的特性
+* Image 也是可以继承别的 Image, 并在它的基础上构建新的镜像
+* 一个 Object 对应着一个 Class, 但是 一个 Class 可以实例化无数个 Object
+* 同理, 一份 Image 可以生成无数个 Container, 这就是方便集群化部署的所在
+
+简单的说 Container 就是 Image 的儿子, 模样和 Image 预想的一样, 但是 Container 运行之后会发生一些改变, 而且这种改变是可以保存的
+
