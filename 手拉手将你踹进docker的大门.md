@@ -170,6 +170,7 @@ docker run -it --rm  --name nginx_swarm_b --network nginx_swarm  nginx /bin/bash
 ```
 注意, 我们并没把接口暴露出去, 现在随便在一个容器中 `ping` 另一个容器
 ```bash
+# 这是在 nginx_swarm_a 中
 # 没有 ping 命令的先装一个 ping
 # apt-get update && apt-get install -y iputils-ping
 root@73d04107780f:/# ping -c 3 nginx_swarm_b
