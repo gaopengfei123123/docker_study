@@ -177,3 +177,21 @@ PING nginx_swarm_b (172.18.0.3) 56(84) bytes of data.
 --- nginx_swarm_b ping statistics ---
 ```
 docker 能自动的把 server name 转换成 ip, 我们只需要标明请求的是哪个容器, 而不是还要记住它的 ip 地址(当然 ip 地址也能设置)
+
+
+
+
+
+### 总结
+弄明白以下几点启动一个容器应该是没什么问题了:
+1. 国内一定要使用国内镜像源, 不然会痛不欲生, [国内 docker 仓库镜像对比](https://ieevee.com/tech/2016/09/28/docker-mirror.html#%E9%80%89%E6%8B%A9%E9%9B%B6%E7%BD%91%E6%98%93163-docker%E9%95%9C%E5%83%8F)
+2. 分清镜像和容器的概念, 容器就是基于镜像构建出来的一个实例
+3. 不要往容器中保存数据, 容器应该是无状态的, 需要持久化保存的就`docker run -v xx:xx` 或者 `docker create volume ...` 用独立的卷来保存
+4. docker 不是虚拟机
+5. 分清楚宿主机端口和容器端口
+6. 处在相同`network`下的容器才能通过容器明互相访问
+
+
+参考资料:
+[Docker — 从入门到实践](https://github.com/yeasy/docker_practice/blob/master/SUMMARY.md)
+[nginx 官方镜像](https://hub.docker.com/_/nginx/)
