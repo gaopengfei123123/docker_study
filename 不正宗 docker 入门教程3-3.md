@@ -240,3 +240,41 @@ WORKDIR /usr/share/nginx/html
 ```
 
 这里需要注意的时 `ARG` 和 `ENV` 的区别， 参考这篇文章： [Docker中 Arg 和 Env 的区别](http://blog.justwe.site/2018/06/28/docker-arg-env/)
+
+
+### 启动docker-compse
+在配置好 `.env` 文件和 `docker-compose.yml` 配置文件后就可以启动它了， 命令也很简单，在同级目录下运行：
+```bash
+docker-compose up -d
+```
+它会自动创建`volume`，`network`，`services`， 而且相关的运行参数都是按着配置文件来的， 这样一来每个整个`docker-compose.yml`中的service就相当于时一个整体，每个服务又属于各自的容器，这样操控是不是节省了很多代码呢？
+
+查看这些容器的运行状况也很是简单
+
+```bash
+docker-compose ps
+# 或者使用更方便的一个工具： ctop ， github地址： https://github.com/bcicen/ctop
+```
+
+可操控单一容器一样， 但是它会把这一组容器都囊括了进去，操控起来只需要知道操控哪个服务，而一些参数就写在配置文件当中已经默认添加了
+
+
+一些常用的命令：
+```bash
+# 终止整个服务集合
+docker-compose stop
+
+# 终止指定的服务 （这有个点就是启动的时候会先启动 depond_on 中的容器，关闭的时候不会影响到 depond_on 中的）
+docker-compose stop nginx
+
+# 查看容器的输出日志
+docker-compose logs -f [services...]
+
+# 构建镜像时不使用缓存（能避免很多因为缓存造成的问题）
+docker-compose build --no-cache --force-rm
+
+# 移除指定的容器
+docker-compose rm nginx
+```
+
+还有个很不错的 docker-compose 项目就是 [laradock](http://laradock.io/), dnmp 就是仿照着它写的， 不过网络不好的情况下别运行 laradock， 它现在做的太臃肿了。。。。， 看看它里面的镜像是怎么写的还是很有收获的
