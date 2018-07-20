@@ -242,7 +242,7 @@ WORKDIR /usr/share/nginx/html
 这里需要注意的时 `ARG` 和 `ENV` 的区别， 参考这篇文章： [Docker中 Arg 和 Env 的区别](http://blog.justwe.site/2018/06/28/docker-arg-env/)
 
 
-### 启动docker-compse
+#### 启动docker-compse
 在配置好 `.env` 文件和 `docker-compose.yml` 配置文件后就可以启动它了， 命令也很简单，在同级目录下运行：
 ```bash
 docker-compose up -d
@@ -278,3 +278,7 @@ docker-compose rm nginx
 ```
 
 还有个很不错的 docker-compose 项目就是 [laradock](http://laradock.io/), dnmp 就是仿照着它写的， 不过网络不好的情况下别运行 laradock， 它现在做的太臃肿了。。。。 看看它里面的镜像是怎么写的还是很有收获的
+
+
+#### 导航
+
