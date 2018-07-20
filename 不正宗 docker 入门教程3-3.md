@@ -7,7 +7,7 @@
 `docker-compose` 就是来解决这个痛点， 只需要按照统一的格式书写，那么大家生成的容器也都是一致的， 在团队开发的时候扔一个配置好的   `docker-compose` 能节省很多时间和口水
 
 
-#### 如何使用 docker-compose 
+####  配置 docker-compose 
 这是我构建的一个开发环境的容器:[dnmp](https://github.com/gaopengfei123123/dnmp)
 
 首先下载下来
@@ -277,4 +277,4 @@ docker-compose build --no-cache --force-rm
 docker-compose rm nginx
 ```
 
-还有个很不错的 docker-compose 项目就是 [laradock](http://laradock.io/), dnmp 就是仿照着它写的， 不过网络不好的情况下别运行 laradock， 它现在做的太臃肿了。。。。， 看看它里面的镜像是怎么写的还是很有收获的
+还有个很不错的 docker-compose 项目就是 [laradock](http://laradock.io/), dnmp 就是仿照着它写的， 不过网络不好的情况下别运行 laradock， 它现在做的太臃肿了。。。。 看看它里面的镜像是怎么写的还是很有收获的
